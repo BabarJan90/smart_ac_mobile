@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class DownloadFileFromUrlUseCase extends UseCase {
-  final EssexDentalApiRepository _repository;
+  final SmartACApiRepository _repository;
 
   DownloadFileFromUrlUseCase(this._repository);
 

@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class ChatbotCommunicationUseCase extends UseCase {
-  final EssexDentalApiRepository _repository;
+  final SmartACApiRepository _repository;
 
   ChatbotCommunicationUseCase(this._repository);
 

@@ -2,21 +2,12 @@ import 'dart:io';
 
 import 'package:domain/domain.dart';
 import 'package:domain/model/chatbot_messages.dart';
-import 'package:domain/model/feedback.dart';
 import 'package:domain/repository/repository.dart';
 
 ///
 /// Repository that contains all possible API actions
 ///
-abstract class EssexDentalApiRepository extends Repository {
-  ///
-  /// checkPrediction to get the the OPG analyses results
-  ///
-  Future<Result<Analyses>> checkPrediction(
-    String OPGImagePath,
-    List<String> selectedModels,
-  );
-
+abstract class SmartACApiRepository extends Repository {
   ///
   /// download file from url
   ///
@@ -29,14 +20,5 @@ abstract class EssexDentalApiRepository extends Repository {
     String query,
     String jobId,
     List<Map<String, String>> history,
-  );
-
-  ///
-  /// Submit feedback
-  ///
-  Future<Result<Feedback>> submitFeedback(
-    Analyses analyses,
-    String name,
-    String feedbackText,
   );
 }

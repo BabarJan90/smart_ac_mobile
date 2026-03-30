@@ -10,13 +10,12 @@ import 'package:connectivity_plus/connectivity_plus.dart' as _i895;
 import 'package:data/src/common/data_object_mapper.dart' as _i793;
 import 'package:data/src/datasource/api/auth_handler.dart' as _i502;
 import 'package:data/src/datasource/api/dio_handler.dart' as _i265;
-import 'package:data/src/datasource/api/essex_dental_api.dart' as _i233;
+import 'package:data/src/datasource/api/smart_ac_api.dart' as _i575;
 import 'package:data/src/datasource/interceptor/auth_interceptor.dart' as _i54;
 import 'package:data/src/datasource/interceptor/connection_interceptor.dart'
     as _i416;
 import 'package:data/src/di/data_module.dart' as _i797;
-import 'package:data/src/repository/essex_dental_api_repository_impl.dart'
-    as _i699;
+import 'package:data/src/repository/smart_ac_api_repository_impl.dart' as _i977;
 import 'package:data/src/repository/storage_repository_impl.dart' as _i510;
 import 'package:dio/dio.dart' as _i361;
 import 'package:domain/common/auth_handler.dart' as _i442;
@@ -48,11 +47,10 @@ class DataPackageModule extends _i526.MicroPackageModule {
           gh<_i528.PrettyDioLogger>(),
         ));
     gh.lazySingleton<_i361.Dio>(() => dataModule.dio(gh<_i265.DioHandler>()));
-    gh.singleton<_i233.EssexDentalApi>(
-        () => _i233.EssexDentalApi(gh<_i361.Dio>()));
-    gh.singleton<_i494.EssexDentalApiRepository>(
-        () => _i699.EssexDentalApiRepositoryImpl(
-              essexDentalApi: gh<_i233.EssexDentalApi>(),
+    gh.singleton<_i575.SmartACApi>(() => _i575.SmartACApi(gh<_i361.Dio>()));
+    gh.singleton<_i494.SmartACApiRepository>(
+        () => _i977.SmartACApiRepositoryImpl(
+              api: gh<_i575.SmartACApi>(),
               objectMapper: gh<_i793.DataObjectMapper>(),
               logger: gh<_i974.Logger>(),
             ));

@@ -20,7 +20,8 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.9.2
-
+#  sdk:  3.11.1
+#  flutter: 3.41.4
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -42,7 +43,7 @@ dependencies:
   bloc: 9.0.0
   flutter_bloc: 9.1.1
   firebase_core: 4.4.0
-  firebase_ai: 3.8.0
+#  firebase_ai: 3.8.0
 
   fluttertoast: 8.2.12
   path_provider: 2.1.5
@@ -80,8 +81,8 @@ dev_dependencies:
 
   # linter
   analyzer: 7.7.1
-  rename_app: 1.6.5
-  flutter_launcher_icons: 0.14.4
+#  rename_app: 1.6.5
+#  flutter_launcher_icons: 0.14.4
 
 flutter_icons:
   android: true
