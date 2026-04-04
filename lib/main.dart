@@ -443,6 +443,7 @@ class _AppShellState extends State<AppShell> {
     ),
     body: _currentScreen(),
     bottomNavigationBar: NavigationBar(
+      labelTextStyle: WidgetStateProperty.all(TextStyle(fontSize: 8)),
       selectedIndex: _selectedIndex,
       onDestinationSelected: (i) => setState(() => _selectedIndex = i),
       backgroundColor: AppTheme.surface,

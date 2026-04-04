@@ -1,4 +1,4 @@
-package ai.smart.ac.smart_ac
+package essex.ai.smart_ac
 
 import io.flutter.embedding.android.FlutterActivity
 

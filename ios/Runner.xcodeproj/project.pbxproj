@@ -105,7 +105,6 @@
 				B0AC811660FD06EB31096197 /* Pods-RunnerTests.release.xcconfig */,
 				D0B4A53BE53A4066316572F7 /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -687,7 +686,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.smart.ac;
+				PRODUCT_BUNDLE_IDENTIFIER = essex.ai.smart.ac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

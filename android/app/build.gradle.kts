@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "ai.smart.ac.smart_ac"
+    namespace = "essex.ai.smart_ac"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "ai.smart.ac.smart_ac"
+        applicationId = "essex.ai.smart_ac"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
