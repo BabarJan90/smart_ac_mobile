@@ -12,8 +12,8 @@
 
 ## Live Demo
 
-| Platform | Status | Link |
-|---|---|---|
+| Platform | Link |
+|---|---|
 | Web | http://smartac-frontend-1775237755.s3-website.eu-west-2.amazonaws.com |
 | Android | https://appdistribution.firebase.dev/i/6c2309e7959899a4 |
 | iOS | https://testflight.apple.com/join/nZdeEwDT |
@@ -135,10 +135,10 @@ aws s3 cp build/web/index.html s3://smartac-frontend-0000000000/index.html \
 
 ## Platforms
 
-| Platform | Status | Distribution |
-|---|---|---|
-| Web | ✅ Live | AWS S3 |
-| Android | ✅ Built | Firebase App Distribution |
-| iOS | 🔄 In progress | App Store / TestFlight |
+| Platform | Distribution |
+|---|--|
+| Web | AWS S3 |
+| Android | Firebase App Distribution |
+| iOS | App Store / TestFlight |
 
 ---
