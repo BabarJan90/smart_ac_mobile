@@ -52,7 +52,7 @@ class _AuditLogScreenState extends State<AuditLogScreen> {
         SizedBox(width: 8),
         Expanded(
           child: Text(
-            'GDPR Compliant — every AI decision is logged '
+            'GDPR Compliant - every AI decision is logged '
             'with full justification',
             style: TextStyle(color: AppTheme.success, fontSize: 12),
           ),

@@ -130,7 +130,7 @@ class _OrchestratorScreenState extends State<OrchestratorScreen> {
           'decides which agents to run. It senses the account '
           'state, plans the best course of action, and runs '
           'Junior Assist, Reviewer Assist, and Generative AI '
-          'as needed — then reports everything it did.',
+          'as needed and send Email alert if high risk Detected and generate reports',
           style: TextStyle(
             color: AppTheme.textSecond,
             fontSize: 13,
@@ -231,7 +231,7 @@ class _OrchestratorScreenState extends State<OrchestratorScreen> {
         ),
         SizedBox(height: 16),
         Text(
-          'Agents running — check terminal for live logs',
+          'Agents running - check terminal for live logs',
           style: TextStyle(color: AppTheme.textSecond, fontSize: 13),
           textAlign: TextAlign.center,
         ),

@@ -253,7 +253,7 @@ class SmartACApi {
   }
 
   ///
-  /// Run the Orchestrator Agent — full Sense → Plan → Act → Report cycle
+  /// Run the Orchestrator Agent - full Sense → Plan → Act → Report cycle
   ///
   Future<OrchestratorResultDto> runOrchestrator({String? clientName}) async {
     final response = await dio.post(

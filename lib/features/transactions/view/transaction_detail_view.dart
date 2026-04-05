@@ -68,7 +68,7 @@ class TransactionDetailView extends StatelessWidget {
             'Risk Score',
             '${transaction.riskScore.toStringAsFixed(1)} / 100',
           ),
-          _detailRow('Anomaly', transaction.isAnomaly ? 'Yes — flagged' : 'No'),
+          _detailRow('Anomaly', transaction.isAnomaly ? 'Yes - flagged' : 'No'),
           const SizedBox(height: 20),
           if (transaction.explanation.isNotEmpty) ...[
             const Text(
