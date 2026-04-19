@@ -49,4 +49,9 @@ abstract class SmartACApiRepository extends Repository {
   ///
   // Future<Result<Map<String, dynamic>>> runReviewerAssist();
   Future<void> runReviewerAssist();
+
+  ///
+  /// reset DB
+  ///
+  Future<Result<Reset>> resetDb({String? clientName});
 }

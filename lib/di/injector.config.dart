@@ -40,7 +40,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i595.AuditLogCubit(gh<_i494.GetAuditLogUseCase>()),
     );
     gh.factory<_i455.OrchestratorCubit>(
-      () => _i455.OrchestratorCubit(gh<_i494.RunOrchestratorUseCase>()),
+      () => _i455.OrchestratorCubit(
+        gh<_i494.RunOrchestratorUseCase>(),
+        gh<_i494.ResetDbUseCase>(),
+      ),
     );
     gh.factory<_i794.DashboardCubit>(
       () => _i794.DashboardCubit(

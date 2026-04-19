@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smart_ac/app_theme.dart';
 import 'package:smart_ac/features/orchestrator/cubit/orchestrator_cubit.dart';
 import 'package:smart_ac/features/orchestrator/view/orchestrator_result_view.dart';
@@ -23,7 +24,19 @@ class _OrchestratorScreenState extends State<OrchestratorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<OrchestratorCubit, OrchestratorState>(
+      body: BlocConsumer<OrchestratorCubit, OrchestratorState>(
+        listener: (context, state) {
+          if (state is OrchestratorResetSuccess) {
+            Fluttertoast.showToast(
+              msg: 'Demo reset! 50 fresh transactions loaded.',
+              backgroundColor: Colors.green,
+              textColor: AppTheme.textPrimary,
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.TOP,
+              timeInSecForIosWeb: 2,
+            );
+          }
+        },
         builder: (context, state) {
           return ListView(
             padding: const EdgeInsets.all(24),
@@ -202,6 +215,17 @@ class _OrchestratorScreenState extends State<OrchestratorScreen> {
             label: Text(
               state is OrchestratorRunning ? 'Running...' : 'Run Orchestrator',
             ),
+          ),
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: state is OrchestratorRunning
+                ? null
+                : context.read<OrchestratorCubit>().resetDb,
+
+            child: Text('Reset Demo'),
           ),
         ),
         if (state is OrchestratorRunning) ...[

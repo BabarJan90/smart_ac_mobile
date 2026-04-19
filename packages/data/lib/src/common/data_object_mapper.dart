@@ -173,6 +173,7 @@ import 'package:data/src/dto/document_dto.dart';
 import 'package:data/src/dto/error_dto.dart';
 import 'package:data/src/dto/junior_assist_dto.dart';
 import 'package:data/src/dto/orchestrator_dto.dart';
+import 'package:data/src/dto/reset_dto.dart';
 import 'package:data/src/dto/reviewer_assist_dto.dart';
 import 'package:data/src/dto/transaction_dto.dart';
 import 'package:dio/dio.dart';
@@ -391,6 +392,12 @@ class DataObjectMapper {
           ? toClientLetter(dto.clientLetter!)
           : const ClientLetter(status: '', client: '', letter: ''),
     );
+  }
+
+  // ── Reset ────────────────────────────────────────────────────────────
+
+  Reset toReset(ResetDto dto) {
+    return Reset(message: dto.message ?? '');
   }
 
   Error toError(Exception exception) {

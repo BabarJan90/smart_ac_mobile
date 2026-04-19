@@ -25,8 +25,10 @@ class SmartAcPackageModule extends _i526.MicroPackageModule {
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     gh.factory<_i595.AuditLogCubit>(
         () => _i595.AuditLogCubit(gh<_i494.GetAuditLogUseCase>()));
-    gh.factory<_i455.OrchestratorCubit>(
-        () => _i455.OrchestratorCubit(gh<_i494.RunOrchestratorUseCase>()));
+    gh.factory<_i455.OrchestratorCubit>(() => _i455.OrchestratorCubit(
+          gh<_i494.RunOrchestratorUseCase>(),
+          gh<_i494.ResetDbUseCase>(),
+        ));
     gh.factory<_i794.DashboardCubit>(() => _i794.DashboardCubit(
           gh<_i494.GetStatsUseCase>(),
           gh<_i494.TransactionUseCase>(),

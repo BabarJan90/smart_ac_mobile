@@ -203,4 +203,17 @@ class SmartACApiRepositoryImpl extends SmartACApiRepository {
       return Result.failed(_objectMapper.toError(e));
     }
   }
+
+  // ── Reset DB ────────────────────────────────────────────────────────────────
+
+  @override
+  Future<Result<Reset>> resetDb({String? clientName}) async {
+    try {
+      final response = await _api.resetDatabase();
+      return Result.success(_objectMapper.toReset(response));
+    } on Exception catch (e) {
+      _logger.e('Exception e: $e');
+      return Result.failed(_objectMapper.toError(e));
+    }
+  }
 }

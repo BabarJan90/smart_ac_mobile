@@ -12,6 +12,8 @@ final class OrchestratorLoaded extends OrchestratorState {
   OrchestratorLoaded(this.result);
 }
 
+class OrchestratorResetSuccess extends OrchestratorState {}
+
 final class OrchestratorError extends OrchestratorState {
   final String message;
   OrchestratorError(this.message);

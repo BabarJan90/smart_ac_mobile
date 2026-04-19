@@ -1,159 +1,9 @@
-// import 'dart:io';
-//
-// import 'package:data/src/dto/account_stats_dto.dart';
-// import 'package:data/src/dto/audit_entry_dto.dart';
-// import 'package:data/src/dto/data_list_dto.dart';
-// import 'package:data/src/dto/transaction_dto.dart';
-// import 'package:dio/dio.dart';
-// import 'package:injectable/injectable.dart';
-//
-// import '../../dto/chatbot_dto.dart';
-//
-// @singleton
-// class SmartACApi {
-//   static const String kRouteChat = 'api/v1/chat';
-//   static const String kTransactions = 'transactions';
-//   static const String kTransactionsStats = 'transactions/stats';
-//   static const String kTransactionsAnalyseAll = 'transactions/analyse-all';
-//   static const String kAgentsDocuments = 'agents/documents';
-//   static String kAgentsDocument(int id) => 'agents/documents/$id';
-//   static const String kAgentsAuditLog = 'agents/audit-log';
-//   static const String kAgentsOrchestrate = 'agents/orchestrate';
-//   static const String kAgentsReviewerAssist = 'agents/reviewer-assist';
-//
-//   final Dio dio;
-//
-//   const SmartACApi(this.dio);
-//
-//   ///
-//   /// Get transactions
-//   ///
-//   Future<DataListDto<TransactionDto>> getTransactions({
-//     int limit = 100,
-//     String? riskFilter,
-//   }) async {
-//     late Map<String, dynamic> data;
-//     data = riskFilter == null
-//         ? {'limit': limit}
-//         : {'limit': limit, 'risk_filter': riskFilter};
-//
-//     final response = await dio.get(kTransactions, data: data);
-//     return DataListDto<TransactionDto>.fromJson(
-//       response.data,
-//       (value) => TransactionDto.fromJson(value as Map<String, dynamic>),
-//     );
-//   }
-//
-//   ///
-//   /// Get Stats
-//   ///
-//   Future<AccountStatsDto> getStats() async {
-//     final response = await dio.get(kTransactionsStats);
-//     return AccountStatsDto.fromJson(response.data);
-//   }
-//
-//   ///
-//   /// Analyse All
-//   ///
-//   Future<void> analyseAll() async {
-//     await dio.post(kTransactionsAnalyseAll);
-//   }
-//
-//   ///
-//   /// Get documents list
-//   ///
-//   Future<DataListDto<AccountDocumentDto>> getDocuments() async {
-//     final response = await dio.get(kTransactionsStats);
-//     return DataListDto<AccountDocumentDto>.fromJson(
-//       response.data,
-//       (value) => AccountDocumentDto.fromJson(value as Map<String, dynamic>),
-//     );
-//   }
-//
-//   ///
-//   /// Get One Document
-//   ///
-//   Future<AccountDocumentDto> getDocument(int id) async {
-//     final response = await dio.get(kAgentsDocument(id));
-//     return AccountDocumentDto.fromJson(response.data);
-//   }
-//
-//   ///
-//   /// Get Audit Logs
-//   ///
-//   Future<DataListDto<AuditEntryDto>> getAuditLog() async {
-//     final response = await dio.get(kAgentsAuditLog);
-//     return DataListDto<AuditEntryDto>.fromJson(
-//       response.data,
-//       (value) => AuditEntryDto.fromJson(value as Map<String, dynamic>),
-//     );
-//   }
-//
-//   ///
-//   /// Run Orchestrator
-//   ///
-//   Future<OrchestratorResultDto> runOrchestrator({String? clientName}) async {
-//     final data = {'client_name': clientName};
-//     final response = await dio.post(kAgentsOrchestrate, data: data);
-//
-//     return OrchestratorResultDto.fromJson(response.data);
-//   }
-//
-//   ///
-//   /// Run Orchestrator
-//   ///
-//   // Future<Result<Map<String, dynamic>>> runReviewerAssist() async {
-//   Future<void> runReviewerAssist() async {
-//     // final response = await dio.post(kAgentsReviewerAssist);
-//     //
-//     // return OrchestratorResultDto.fromJson(response.data);
-//   }
-//
-//   ///
-//   ///  Download file from url
-//   ///
-//   Future<String> downloadFileFromUrl(
-//     String fileUrl,
-//     Directory appDocDir, {
-//     Options? options,
-//   }) async {
-//     final downloadFileName = DateTime.now().toIso8601String();
-//     final fullPath = "${appDocDir.path}/$downloadFileName.pdf";
-//     await dio.download(fileUrl, fullPath, options: options);
-//     return fullPath;
-//   }
-//
-//   ///
-//   /// Chatbot messages
-//   ///
-//   Future<ChatbotDto> chat(
-//     String query,
-//     String jobId,
-//     List<Map<String, String>> history,
-//   ) async {
-//     final data = {'job_id': jobId, 'query': query, 'history': history};
-//     final response = await dio.post(kRouteChat, data: data);
-//     return ChatbotDto.fromJson(response.data);
-//   }
-// }
-
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-
 import 'package:data/src/dto/account_stats_dto.dart';
 import 'package:data/src/dto/audit_entry_dto.dart';
 import 'package:data/src/dto/data_list_dto.dart';
 import 'package:data/src/dto/document_dto.dart';
 import 'package:data/src/dto/orchestrator_dto.dart';
+import 'package:data/src/dto/reset_dto.dart';
 import 'package:data/src/dto/reviewer_assist_dto.dart';
 import 'package:data/src/dto/transaction_dto.dart';
 import 'package:dio/dio.dart';
@@ -172,6 +22,7 @@ class SmartACApi {
   static const String kAgentsJuniorAssist = 'agents/junior-assist';
   static const String kAgentsGenerateLetter = 'agents/generate-letter';
   static const String kAgentsAnomalyReport = 'agents/generate-anomaly-report';
+  static const String kReset = 'transactions/reset';
 
   static String kAgentsDocument(int id) => 'agents/documents/$id';
   static String kAgentsDocumentText(int id) => 'agents/documents/$id/text';
@@ -321,5 +172,15 @@ class SmartACApi {
       _wrapList(response.data),
       (value) => AuditEntryDto.fromJson(value as Map<String, dynamic>),
     );
+  }
+
+  // ── Reset DB ──────────────────────────────────────────────────────────────
+
+  ///
+  /// This will reset the db and logs for demo
+  ///
+  Future<ResetDto> resetDatabase() async {
+    final response = await dio.post(kReset);
+    return ResetDto.fromJson(response.data);
   }
 }
