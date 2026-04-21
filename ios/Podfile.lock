@@ -1,6 +1,9 @@
 PODS:
   - connectivity_plus (0.0.1):
     - Flutter
+  - CwlCatchException (2.2.1):
+    - CwlCatchExceptionSupport (~> 2.2.1)
+  - CwlCatchExceptionSupport (2.2.1)
   - Firebase/CoreOnly (12.8.0):
     - FirebaseCore (~> 12.8.0)
   - Firebase/Crashlytics (12.8.0):
@@ -80,6 +83,10 @@ PODS:
     - PromisesObjC (= 2.4.0)
   - share_plus (0.0.1):
     - Flutter
+  - speech_to_text (7.2.0):
+    - CwlCatchException
+    - Flutter
+    - FlutterMacOS
   - url_launcher_ios (0.0.1):
     - Flutter
 
@@ -93,10 +100,13 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pdfrx (from `.symlinks/plugins/pdfrx/darwin`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
+  - speech_to_text (from `.symlinks/plugins/speech_to_text/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
+    - CwlCatchException
+    - CwlCatchExceptionSupport
     - Firebase
     - FirebaseCore
     - FirebaseCoreExtension
@@ -130,11 +140,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pdfrx/darwin"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
+  speech_to_text:
+    :path: ".symlinks/plugins/speech_to_text/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
+  CwlCatchException: 7acc161b299a6de7f0a46a6ed741eae2c8b4d75a
+  CwlCatchExceptionSupport: 54ccab8d8c78907b57f99717fb19d4cc3bce02dc
   Firebase: 9a58fdbc9d8655ed7b79a19cf9690bb007d3d46d
   firebase_core: ee30637e6744af8e0c12a6a1e8a9718506ec2398
   firebase_crashlytics: 28b8f39df8104131376393e6af658b8b77dd120f
@@ -156,6 +170,7 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
+  speech_to_text: 3b313d98516d3d0406cea424782ec25470c59d19
   url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
 PODFILE CHECKSUM: 3ba3a73b1b12adcf321a227a745625fe0888cc82

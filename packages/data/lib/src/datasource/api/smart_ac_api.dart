@@ -5,6 +5,7 @@ import 'package:data/src/dto/document_dto.dart';
 import 'package:data/src/dto/orchestrator_dto.dart';
 import 'package:data/src/dto/reset_dto.dart';
 import 'package:data/src/dto/reviewer_assist_dto.dart';
+import 'package:data/src/dto/speech_recommendation_dto.dart';
 import 'package:data/src/dto/transaction_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -23,6 +24,7 @@ class SmartACApi {
   static const String kAgentsGenerateLetter = 'agents/generate-letter';
   static const String kAgentsAnomalyReport = 'agents/generate-anomaly-report';
   static const String kReset = 'transactions/reset';
+  static const String kSpeechRecommendation = 'agents/speech-recommendation';
 
   static String kAgentsDocument(int id) => 'agents/documents/$id';
   static String kAgentsDocumentText(int id) => 'agents/documents/$id/text';
@@ -182,5 +184,21 @@ class SmartACApi {
   Future<ResetDto> resetDatabase() async {
     final response = await dio.post(kReset);
     return ResetDto.fromJson(response.data);
+  }
+
+  // ── Speech Recommendation ─────────────────────────────────────────────────
+
+  ///
+  /// Get AI recommendations from transcribed speech
+  ///
+  Future<SpeechRecommendationDto> getSpeechRecommendation({
+    required String text,
+    String? clientName,
+  }) async {
+    final response = await dio.post(
+      kSpeechRecommendation,
+      data: {'text': text, if (clientName != null) 'client_name': clientName},
+    );
+    return SpeechRecommendationDto.fromJson(response.data);
   }
 }

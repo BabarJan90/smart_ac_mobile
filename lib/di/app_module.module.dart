@@ -7,6 +7,7 @@
 import 'dart:async' as _i687;
 
 import 'package:domain/domain.dart' as _i494;
+import 'package:domain/usecase/get_speech_recommendation_usecase.dart' as _i620;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:smart_ac/features/audit_log/cubit/audit_log_cubit.dart'
     as _i595;
@@ -16,6 +17,8 @@ import 'package:smart_ac/features/documents/cubit/documents_cubit.dart'
     as _i586;
 import 'package:smart_ac/features/orchestrator/cubit/orchestrator_cubit.dart'
     as _i455;
+import 'package:smart_ac/features/speech_screen/cubit/speech_cubit.dart'
+    as _i718;
 import 'package:smart_ac/features/transactions/cubit/transactions_cubit.dart'
     as _i484;
 
@@ -25,6 +28,8 @@ class SmartAcPackageModule extends _i526.MicroPackageModule {
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     gh.factory<_i595.AuditLogCubit>(
         () => _i595.AuditLogCubit(gh<_i494.GetAuditLogUseCase>()));
+    gh.factory<_i718.SpeechCubit>(
+        () => _i718.SpeechCubit(gh<_i620.GetSpeechRecommendationUseCase>()));
     gh.factory<_i455.OrchestratorCubit>(() => _i455.OrchestratorCubit(
           gh<_i494.RunOrchestratorUseCase>(),
           gh<_i494.ResetDbUseCase>(),

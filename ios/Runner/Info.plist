@@ -45,5 +45,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+    <string>SmartAC uses speech recognition for AI recommendations</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>SmartAC uses microphone for voice commands</string>
 </dict>
 </plist>

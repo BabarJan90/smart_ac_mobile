@@ -23,7 +23,7 @@ class DioHandler {
       BaseOptions(
         // baseUrl: 'http://127.0.0.1:8000/',
         baseUrl: 'http://13.135.205.116:8000/',
-
+        // baseUrl: 'https://certainly-dweeb-wife.ngrok-free.app/',
         receiveTimeout: Duration(minutes: 5),
         connectTimeout: Duration(minutes: 5),
         sendTimeout: Duration(minutes: 5),

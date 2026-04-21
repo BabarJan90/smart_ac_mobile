@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -12,6 +13,8 @@ import 'features/documents/cubit/documents_cubit.dart';
 import 'features/documents/screen/documents_screen.dart';
 import 'features/orchestrator/cubit/orchestrator_cubit.dart';
 import 'features/orchestrator/screen/orchestrator_screen.dart';
+import 'features/speech_screen/cubit/speech_cubit.dart';
+import 'features/speech_screen/speech_screen.dart';
 import 'features/transactions/cubit/transactions_cubit.dart';
 import 'features/transactions/screen/transactions_screen.dart';
 
@@ -72,6 +75,12 @@ class _AppShellState extends State<AppShell> {
       selectedIcon: Icons.history,
       label: 'Audit Log',
     ),
+    if (!kIsWeb)
+      NavigationItem(
+        icon: Icons.mic_none,
+        selectedIcon: Icons.mic,
+        label: 'Assistant',
+      ),
   ];
 
   @override
@@ -84,6 +93,7 @@ class _AppShellState extends State<AppShell> {
         BlocProvider(create: (_) => getIt<OrchestratorCubit>()),
         BlocProvider(create: (_) => getIt<DocumentsCubit>()),
         BlocProvider(create: (_) => getIt<AuditLogCubit>()),
+        if (!kIsWeb) BlocProvider(create: (_) => getIt<SpeechCubit>()),
       ],
       child: isWide ? _buildWideLayout() : _buildMobileLayout(),
     );
@@ -95,6 +105,8 @@ class _AppShellState extends State<AppShell> {
     2 => const OrchestratorScreen(),
     3 => const DocumentsScreen(),
     4 => const AuditLogScreen(),
+    5 => const SpeechScreen(),
+
     _ => const DashboardScreen(),
   };
 

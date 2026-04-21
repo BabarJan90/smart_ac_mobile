@@ -1,169 +1,3 @@
-// import 'package:data/src/dto/account_document_dto.dart';
-// import 'package:data/src/dto/account_stats_dto.dart';
-// import 'package:data/src/dto/audit_entry_dto.dart';
-// import 'package:data/src/dto/chatbot_dto.dart';
-// import 'package:data/src/dto/data_list_dto.dart';
-// import 'package:data/src/dto/error_dto.dart';
-// import 'package:data/src/dto/orchestrator_result_dto.dart';
-// import 'package:data/src/dto/transaction_dto.dart';
-// import 'package:dio/dio.dart';
-// import 'package:domain/domain.dart';
-// import 'package:domain/model/account_document.dart';
-// import 'package:domain/model/account_stats.dart';
-// import 'package:domain/model/audit_entry.dart';
-// import 'package:domain/model/chatbot_messages.dart';
-// import 'package:domain/model/data_list.dart';
-// import 'package:domain/model/orchestrator_result.dart';
-// import 'package:domain/model/transaction.dart';
-// import 'package:injectable/injectable.dart';
-// import 'package:json_annotation/json_annotation.dart';
-//
-// @singleton
-// class DataObjectMapper {
-//
-//
-//   AuditEntry toAuditEntry(AuditEntryDto dto) {
-//     return AuditEntry(
-//       id: dto.id,
-//       timestamp: dto.timestamp,
-//       action: dto.action,
-//     );
-//   }
-//
-//   AccountDocument toAccountDocument(AccountDocumentDto dto) {
-//     return AccountDocument(
-//       id: dto.id,
-//       docType: dto.docType,
-//       createdAt: dto.createdAt,
-//       preview: dto.preview,
-//       content: dto.content,
-//     );
-//   }
-//
-//   DataList<AccountDocument> toAccountDocuments(
-//     DataListDto<AccountDocumentDto> dto,
-//   ) {
-//     return DataList(
-//       items: dto.items?.map((e) => toAccountDocument(e)).toList() ?? [],
-//       currentPage: DataList.defaultSize,
-//       pageSize: DataList.defaultSize,
-//       totalPages: DataList.defaultSize,
-//     );
-//   }
-//
-//   AccountStats toAccountStats(AccountStatsDto dto) {
-//     return AccountStats(
-//       totalTransactions: dto.totalTransactions,
-//       totalValue: dto.totalValue,
-//       riskDistribution: dto.riskDistribution,
-//       anomalyCount: dto.anomalyCount,
-//     );
-//   }
-//
-//   DataList<Transaction> toTransactions(DataListDto<TransactionDto> dto) {
-//     return DataList(
-//       items: dto.items?.map((e) => toTransaction(e)).toList() ?? [],
-//       currentPage: DataList.defaultSize,
-//       pageSize: DataList.defaultSize,
-//       totalPages: DataList.defaultSize,
-//     );
-//   }
-//
-//   Transaction toTransaction(TransactionDto dto) {
-//     return Transaction(
-//       id: dto.id,
-//       date: dto.date,
-//       vendor: dto.vendor,
-//       amount: dto.amount,
-//       category: dto.category,
-//       description: dto.description,
-//       riskScore: dto.riskScore,
-//       riskLabel: dto.riskLabel,
-//       isAnomaly: dto.isAnomaly,
-//       explanation: dto.explanation,
-//     );
-//   }
-//
-//   OrchestratorResult toOrchestratorResult(OrchestratorResultDto dto) {
-//     return OrchestratorResult(
-//       completedAt: dto.completedAt,
-//       durationSeconds: dto.durationSeconds,
-//       summary: dto.summary,
-//       planExecuted: dto.planExecuted,
-//       actionLog: dto.actionLog,
-//       results: dto.results,
-//     );
-//   }
-//
-//   // OrchestratorResult toOrchestratorResult(OrchestratorResultDto dto) {
-//   //   return OrchestratorResult(
-//   //     completedAt: dto.completedAt,
-//   //     durationSeconds: dto.durationSeconds,
-//   //     summary: dto.summary,
-//   //     planExecuted: dto.planExecuted,
-//   //     actionLog: dto.actionLog,
-//   //     results: dto.results,
-//   //   );
-//   // }
-//
-//   Error toError(Exception exception) {
-//     Error error;
-//     if (exception is DioException) {
-//       switch (exception.type) {
-//         case DioExceptionType.cancel:
-//           error = Error(message: "Request to API server was cancelled");
-//           break;
-//         case DioExceptionType.connectionTimeout:
-//           error = Error(
-//             message:
-//                 "It looks like there's a connection issue. Please try again.",
-//           );
-//           break;
-//         case DioExceptionType.unknown:
-//           error = Error(
-//             message:
-//                 "Error while processing request, check your internet connection",
-//           );
-//           break;
-//         case DioExceptionType.receiveTimeout:
-//           error = Error(
-//             message:
-//                 "It looks like there's a connection issue. Please try again.",
-//           );
-//           break;
-//         case DioExceptionType.badResponse:
-//           final data = exception.response?.data;
-//           try {
-//             final dto = ErrorDto.fromJson(data);
-//             error = Error(code: dto.code, message: dto.message);
-//           } on CheckedFromJsonException catch (e) {
-//             error = Error(message: e.message ?? ErrorDto.kParsingError);
-//           }
-//           break;
-//         case DioExceptionType.sendTimeout:
-//           error = Error(
-//             message:
-//                 "It looks like there's a connection issue. Please try again.",
-//           );
-//           break;
-//         case DioExceptionType.connectionError:
-//           error = Error(message: 'No internet connection');
-//           break;
-//         default:
-//           error = Error(message: "Something went wrong");
-//           break;
-//       }
-//     } else if (exception is CheckedFromJsonException) {
-//       error = Error(message: exception.message ?? ErrorDto.kParsingError);
-//     } else {
-//       error = Error(message: exception.toString());
-//     }
-//     // logger.e(
-//     //   "An error has occurred. code=${error.code}, message=${error.message}",
-//     // );
-//     return error;
-//   }
-// }
 import 'package:data/src/dto/account_stats_dto.dart';
 import 'package:data/src/dto/anomaly_report_dto.dart';
 import 'package:data/src/dto/audit_entry_dto.dart';
@@ -175,6 +9,7 @@ import 'package:data/src/dto/junior_assist_dto.dart';
 import 'package:data/src/dto/orchestrator_dto.dart';
 import 'package:data/src/dto/reset_dto.dart';
 import 'package:data/src/dto/reviewer_assist_dto.dart';
+import 'package:data/src/dto/speech_recommendation_dto.dart';
 import 'package:data/src/dto/transaction_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
@@ -398,6 +233,16 @@ class DataObjectMapper {
 
   Reset toReset(ResetDto dto) {
     return Reset(message: dto.message ?? '');
+  }
+
+  // ── Speech Recommendation ────────────────────────────────────────────────
+
+  SpeechRecommendation toSpeechRecommendation(SpeechRecommendationDto dto) {
+    return SpeechRecommendation(
+      recommendation: dto.recommendation,
+      services: dto.services,
+      nextSteps: dto.nextSteps,
+    );
   }
 
   Error toError(Exception exception) {

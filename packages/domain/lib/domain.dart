@@ -10,6 +10,7 @@ export 'package:domain/model/junior_assist.dart';
 export 'package:domain/model/orchestrator_result.dart';
 export 'package:domain/model/reset.dart';
 export 'package:domain/model/reviewer_assist.dart';
+export 'package:domain/model/speech_recommendation.dart';
 export 'package:domain/model/transaction.dart';
 export 'package:domain/repository/smart_ac_api_repository.dart';
 export 'package:domain/repository/storage_repository.dart';

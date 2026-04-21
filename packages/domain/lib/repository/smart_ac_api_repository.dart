@@ -54,4 +54,12 @@ abstract class SmartACApiRepository extends Repository {
   /// reset DB
   ///
   Future<Result<Reset>> resetDb({String? clientName});
+
+  ///
+  /// Speech Recommendation
+  ///
+  Future<Result<SpeechRecommendation>> getSpeechRecommendation({
+    required String text,
+    String? clientName,
+  });
 }

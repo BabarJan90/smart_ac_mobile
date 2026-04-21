@@ -17,11 +17,13 @@ import 'package:domain/model/junior_assist.dart' as _i193;
 import 'package:domain/model/orchestrator_result.dart' as _i496;
 import 'package:domain/model/reset.dart' as _i1025;
 import 'package:domain/model/reviewer_assist.dart' as _i651;
+import 'package:domain/model/speech_recommendation.dart' as _i351;
 import 'package:domain/model/transaction.dart' as _i59;
 import 'package:domain/usecase/analyse_all_use_case.dart' as _i880;
 import 'package:domain/usecase/get_audit_log_use_case.dart' as _i533;
 import 'package:domain/usecase/get_document_use_case.dart' as _i104;
 import 'package:domain/usecase/get_documents_use_case.dart' as _i965;
+import 'package:domain/usecase/get_speech_recommendation_usecase.dart' as _i620;
 import 'package:domain/usecase/get_stats_use_case.dart' as _i26;
 import 'package:domain/usecase/reset_db_use_case.dart' as _i606;
 import 'package:domain/usecase/run_orchestrator_use_case.dart' as _i737;
@@ -77,6 +79,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
         () => _i737.RunOrchestratorUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i104.GetDocumentUseCase>(
         () => _i104.GetDocumentUseCase(gh<_i494.SmartACApiRepository>()));
+    gh.factory<_i606.ResetDbUseCase>(
+        () => _i606.ResetDbUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i965.GetDocumentsUseCase>(
         () => _i965.GetDocumentsUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i462.RunReviewerAssistUseCase>(
@@ -87,8 +91,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
         () => _i533.GetAuditLogUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i26.GetStatsUseCase>(
         () => _i26.GetStatsUseCase(gh<_i494.SmartACApiRepository>()));
-    gh.factory<_i606.ResetDbUseCase>(
-        () => _i606.ResetDbUseCase(gh<_i494.SmartACApiRepository>()));
+    gh.factory<_i620.GetSpeechRecommendationUseCase>(() =>
+        _i620.GetSpeechRecommendationUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i20.AccountDocument>(() => _i20.AccountDocument(
           id: gh<int>(),
           docType: gh<String>(),
@@ -100,6 +104,11 @@ class DomainPackageModule extends _i526.MicroPackageModule {
           status: gh<String>(),
           client: gh<String>(),
           letter: gh<String>(),
+        ));
+    gh.factory<_i351.SpeechRecommendation>(() => _i351.SpeechRecommendation(
+          recommendation: gh<String>(),
+          services: gh<List<String>>(),
+          nextSteps: gh<List<String>>(),
         ));
     gh.factory<_i193.Categorization>(() => _i193.Categorization(
           transactionId: gh<int>(),
