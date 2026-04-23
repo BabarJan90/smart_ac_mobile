@@ -19,6 +19,8 @@ class SmartACApi {
   static const String kAgentsDocuments = 'agents/documents';
   static const String kAgentsAuditLog = 'agents/audit-log';
   static const String kAgentsOrchestrate = 'agents/orchestrate';
+  static const String kAgentsOrchestrateLangChain =
+      'agents/orchestrate-langchain';
   static const String kAgentsReviewerAssist = 'agents/reviewer-assist';
   static const String kAgentsJuniorAssist = 'agents/junior-assist';
   static const String kAgentsGenerateLetter = 'agents/generate-letter';
@@ -108,9 +110,16 @@ class SmartACApi {
   ///
   /// Run the Orchestrator Agent - full Sense → Plan → Act → Report cycle
   ///
-  Future<OrchestratorResultDto> runOrchestrator({String? clientName}) async {
+  Future<OrchestratorResultDto> runOrchestrator({
+    String? clientName,
+    bool useLangChain = false,
+  }) async {
+    final endpoint = useLangChain
+        ? kAgentsOrchestrateLangChain
+        : kAgentsOrchestrate;
+
     final response = await dio.post(
-      kAgentsOrchestrate,
+      endpoint,
       data: OrchestratorRequestDto(clientName: clientName).toJson(),
     );
     return OrchestratorResultDto.fromJson(response.data);

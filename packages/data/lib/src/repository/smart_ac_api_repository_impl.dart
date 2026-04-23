@@ -111,9 +111,13 @@ class SmartACApiRepositoryImpl extends SmartACApiRepository {
   @override
   Future<Result<OrchestratorResult>> runOrchestrator({
     String? clientName,
+    bool useLangChain = false,
   }) async {
     try {
-      final response = await _api.runOrchestrator(clientName: clientName);
+      final response = await _api.runOrchestrator(
+        clientName: clientName,
+        useLangChain: useLangChain,
+      );
       return Result.success(_objectMapper.toOrchestratorResult(response));
     } on Exception catch (e) {
       _logger.e('Exception e: $e');

@@ -13,9 +13,12 @@ class OrchestratorCubit extends Cubit<OrchestratorState> {
   OrchestratorCubit(this._runOrchestratorUseCase, this._resetDbUseCase)
     : super(OrchestratorInitial());
 
-  Future<void> run({String? clientName}) async {
+  Future<void> run({String? clientName, bool useLangChain = false}) async {
     emit(OrchestratorRunning());
-    final result = await _runOrchestratorUseCase(clientName: clientName);
+    final result = await _runOrchestratorUseCase(
+      clientName: clientName,
+      useLangChain: useLangChain,
+    );
     result.when(
       success: (data) => emit(OrchestratorLoaded(data)),
       failed: (error) => emit(OrchestratorError(error.message)),

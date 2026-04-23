@@ -42,7 +42,10 @@ abstract class SmartACApiRepository extends Repository {
   ///
   /// run Orchestrator
   ///
-  Future<Result<OrchestratorResult>> runOrchestrator({String? clientName});
+  Future<Result<OrchestratorResult>> runOrchestrator({
+    String? clientName,
+    bool useLangChain = false,
+  });
 
   ///
   /// Run Reviewer Assist

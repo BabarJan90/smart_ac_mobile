@@ -14,6 +14,7 @@ class OrchestratorScreen extends StatefulWidget {
 
 class _OrchestratorScreenState extends State<OrchestratorScreen> {
   final _clientController = TextEditingController(text: 'Smith & Associates');
+  bool _useLangChain = false;
 
   @override
   void dispose() {
@@ -192,6 +193,29 @@ class _OrchestratorScreenState extends State<OrchestratorScreen> {
           ),
         ),
         const SizedBox(height: 16),
+        // ── LangChain Toggle ──────────────────────────────────
+        Row(
+          children: [
+            const Text(
+              'Use LangChain',
+              style: TextStyle(color: AppTheme.textSecond, fontSize: 13),
+            ),
+            const Spacer(),
+            Switch(
+              value: _useLangChain,
+              onChanged: (val) => setState(() => _useLangChain = val),
+              activeThumbColor: AppTheme.accent,
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          _useLangChain
+              ? '🤖 Claude autonomously decides which agents to run'
+              : '⚙️ Deterministic rules decide which agents to run',
+          style: const TextStyle(color: AppTheme.textSecond, fontSize: 11),
+        ),
+        const SizedBox(height: 16),
         SizedBox(
           width: double.infinity,
           child: ElevatedButton.icon(
@@ -201,6 +225,7 @@ class _OrchestratorScreenState extends State<OrchestratorScreen> {
                     clientName: _clientController.text.trim().isEmpty
                         ? null
                         : _clientController.text.trim(),
+                    useLangChain: _useLangChain,
                   ),
             icon: state is OrchestratorRunning
                 ? const SizedBox(
