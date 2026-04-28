@@ -1,0 +1,40 @@
+name: Trigger Both Build (iOS + Android)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version Number (e.g. 1.0.10)'
+        required: true
+        default: '1.0.0'
+      buildNumber:
+        description: 'Build Number (e.g. 82)'
+        required: true
+        default: '1'
+      buildType:
+        description: 'Build Type'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - release
+
+jobs:
+  ios_build:
+    name: iOS Build
+    uses: ./.github/workflows/distribute_ios_builds.yml
+    with:
+      version: ${{ inputs.version }}
+      buildNumber: ${{ inputs.buildNumber }}
+      buildType: ${{ inputs.buildType }}
+    secrets: inherit
+
+  android_build:
+    name: Android Build
+    uses: ./.github/workflows/distribute_android_builds.yml
+    with:
+      version: ${{ inputs.version }}
+      buildNumber: ${{ inputs.buildNumber }}
+      buildType: ${{ inputs.buildType }}
+    secrets: inherit
