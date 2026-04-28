@@ -66,6 +66,6 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
+#          groups: testers
           file: build/app/outputs/flutter-apk/app-release.apk
           releaseNotes: "SmartAc ${{ inputs.buildType }} build ${{ inputs.version }}+${{ inputs.buildNumber }}"
