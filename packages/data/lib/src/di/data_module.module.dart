@@ -29,18 +29,18 @@ class DataPackageModule extends _i526.MicroPackageModule {
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final dataModule = _$DataModule();
+    gh.singleton<_i793.DataObjectMapper>(() => _i793.DataObjectMapper());
     gh.singleton<_i895.Connectivity>(() => dataModule.connectivity);
     gh.singleton<_i528.PrettyDioLogger>(() => dataModule.prettyDioLogger);
     gh.singleton<_i974.Logger>(() => dataModule.logger);
-    gh.singleton<_i793.DataObjectMapper>(() => _i793.DataObjectMapper());
     gh.singleton<_i442.AuthHandler>(() => _i502.AuthHandlerImpl());
     gh.singleton<_i494.StorageRepository>(() => _i510.StorageRepositoryImpl());
-    gh.singleton<_i416.ConnectionInterceptor>(
-        () => _i416.ConnectionInterceptor(gh<_i895.Connectivity>()));
     gh.singleton<_i54.AuthInterceptor>(() => _i54.AuthInterceptor(
           gh<_i494.StorageRepository>(),
           gh<_i494.AuthHandler>(),
         ));
+    gh.singleton<_i416.ConnectionInterceptor>(
+        () => _i416.ConnectionInterceptor(gh<_i895.Connectivity>()));
     gh.singleton<_i265.DioHandler>(() => dataModule.dioHandler(
           gh<_i54.AuthInterceptor>(),
           gh<_i416.ConnectionInterceptor>(),
