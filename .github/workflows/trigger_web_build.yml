@@ -1,4 +1,4 @@
-name: Trigger iOS Build
+name: Trigger Web Build
 
 on:
   workflow_dispatch:
@@ -7,10 +7,6 @@ on:
         description: 'Version Number (e.g. 1.0.10)'
         required: true
         default: '1.0.0'
-      buildNumber:
-        description: 'Build Number (e.g. 82)'
-        required: true
-        default: '1'
       buildType:
         description: 'Build Type'
         required: true
@@ -19,11 +15,11 @@ on:
         options:
           - staging
           - release
+
 jobs:
-  call_ios_build:
-    uses: ./.github/workflows/distribute_ios_builds.yml
+  call_web_build:
+    uses: ./.github/workflows/distribute_web_builds.yml
     with:
       version: ${{ inputs.version }}
-      buildNumber: ${{ inputs.buildNumber }}
       buildType: ${{ inputs.buildType }}
     secrets: inherit

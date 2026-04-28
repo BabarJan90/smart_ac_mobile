@@ -15,6 +15,10 @@ on:
         description: 'Build Type'
         required: true
         default: 'staging'
+        type: choice
+        options:
+          - staging
+          - release
 
 jobs:
   call_android_build:
