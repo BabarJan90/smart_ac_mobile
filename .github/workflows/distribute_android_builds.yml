@@ -43,6 +43,8 @@ jobs:
 
       - name: Flutter pub get
         run: make get
+      - name: Generate code
+        run: make gen
 
       - name: Decode Keystore
         run: |
