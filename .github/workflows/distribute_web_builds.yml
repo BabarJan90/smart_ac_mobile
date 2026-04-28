@@ -1,0 +1,58 @@
+# .github/workflows/distribute_web_builds.yml
+name: Web App Build
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: 'Version Number (e.g. 1.0.10)'
+        required: true
+        type: string
+      buildType:
+        description: 'Build Type (Staging or Release)'
+        required: true
+        type: string
+
+run-name: "SmartAc Web - ${{ inputs.buildType }} Build ${{ inputs.version }}"
+
+jobs:
+  web_build:
+    name: Build & Deploy Web to AWS S3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.8'
+          channel: 'stable'
+          cache: true
+
+      - name: Flutter pub get
+        run: make get
+
+      - name: Build Flutter Web
+        run: |
+          flutter build web --release \
+            --build-name=${{ inputs.version }} \
+            --dart-define=ENV=${{ inputs.buildType }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync build/web s3://smartac-frontend-1775237755 \
+            --delete \
+            --cache-control "max-age=31536000" \
+            --exclude "index.html"
+
+          aws s3 cp build/web/index.html s3://smartac-frontend-1775237755/index.html \
+            --cache-control "no-cache"
