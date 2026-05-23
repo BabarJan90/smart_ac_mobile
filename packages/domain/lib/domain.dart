@@ -8,6 +8,7 @@ export 'package:domain/model/audit_entry.dart';
 export 'package:domain/model/client_letter.dart';
 export 'package:domain/model/junior_assist.dart';
 export 'package:domain/model/orchestrator_result.dart';
+export 'package:domain/model/product_recommendation.dart';
 export 'package:domain/model/reset.dart';
 export 'package:domain/model/reviewer_assist.dart';
 export 'package:domain/model/speech_recommendation.dart';

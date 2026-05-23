@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:smart_ac/app_theme.dart';
 import 'package:smart_ac/di/injector.dart';
+import 'package:smart_ac/features/dashboard/cubit/product_cubit.dart';
 
 import 'features/audit_log/cubit/audit_log_cubit.dart';
 import 'features/audit_log/screen/audit_log_screen.dart';
@@ -88,6 +89,7 @@ class _AppShellState extends State<AppShell> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<DashboardCubit>()),
+        BlocProvider(create: (_) => getIt<ProductCubit>()),
         BlocProvider(create: (_) => getIt<TransactionsCubit>()),
         BlocProvider(create: (_) => getIt<OrchestratorCubit>()),
         BlocProvider(create: (_) => getIt<DocumentsCubit>()),

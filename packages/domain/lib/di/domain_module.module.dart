@@ -15,6 +15,7 @@ import 'package:domain/model/chat_history.dart' as _i114;
 import 'package:domain/model/client_letter.dart' as _i977;
 import 'package:domain/model/junior_assist.dart' as _i193;
 import 'package:domain/model/orchestrator_result.dart' as _i496;
+import 'package:domain/model/product_recommendation.dart' as _i67;
 import 'package:domain/model/reset.dart' as _i1025;
 import 'package:domain/model/reviewer_assist.dart' as _i651;
 import 'package:domain/model/speech_recommendation.dart' as _i351;
@@ -23,6 +24,8 @@ import 'package:domain/usecase/analyse_all_use_case.dart' as _i880;
 import 'package:domain/usecase/get_audit_log_use_case.dart' as _i533;
 import 'package:domain/usecase/get_document_use_case.dart' as _i104;
 import 'package:domain/usecase/get_documents_use_case.dart' as _i965;
+import 'package:domain/usecase/get_product_recommendations_use_case.dart'
+    as _i195;
 import 'package:domain/usecase/get_speech_recommendation_usecase.dart' as _i620;
 import 'package:domain/usecase/get_stats_use_case.dart' as _i26;
 import 'package:domain/usecase/reset_db_use_case.dart' as _i606;
@@ -56,6 +59,12 @@ class DomainPackageModule extends _i526.MicroPackageModule {
           unscored: gh<int>(),
           anomalyCount: gh<int>(),
         ));
+    gh.factory<_i67.ProductRecommendation>(() => _i67.ProductRecommendation(
+          source: gh<String>(),
+          products: gh<List<_i67.ProductItem>>(),
+          conversationSummary: gh<String>(),
+          durationSeconds: gh<double>(),
+        ));
     gh.factory<_i880.AnalyseAllUseCase>(
         () => _i880.AnalyseAllUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i533.GetAuditLogUseCase>(
@@ -64,6 +73,9 @@ class DomainPackageModule extends _i526.MicroPackageModule {
         () => _i104.GetDocumentUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i965.GetDocumentsUseCase>(
         () => _i965.GetDocumentsUseCase(gh<_i494.SmartACApiRepository>()));
+    gh.factory<_i195.GetProductRecommendationsUseCase>(() =>
+        _i195.GetProductRecommendationsUseCase(
+            gh<_i494.SmartACApiRepository>()));
     gh.factory<_i620.GetSpeechRecommendationUseCase>(() =>
         _i620.GetSpeechRecommendationUseCase(gh<_i494.SmartACApiRepository>()));
     gh.factory<_i26.GetStatsUseCase>(
@@ -115,6 +127,15 @@ class DomainPackageModule extends _i526.MicroPackageModule {
           status: gh<String>(),
           processed: gh<int>(),
           categorisations: gh<List<_i193.Categorization>>(),
+        ));
+    gh.factory<_i67.ProductItem>(() => _i67.ProductItem(
+          id: gh<int>(),
+          title: gh<String>(),
+          price: gh<double>(),
+          category: gh<String>(),
+          image: gh<String>(),
+          reason: gh<String>(),
+          rating: gh<double>(),
         ));
     gh.factory<_i1025.Reset>(() => _i1025.Reset(message: gh<String>()));
     gh.factory<_i781.AuditEntry>(() => _i781.AuditEntry(

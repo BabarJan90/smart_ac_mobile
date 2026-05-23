@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:domain/model/data_list.dart';
+import 'package:domain/model/product_recommendation.dart';
 import 'package:domain/repository/repository.dart';
 
 ///
@@ -64,5 +65,12 @@ abstract class SmartACApiRepository extends Repository {
   Future<Result<SpeechRecommendation>> getSpeechRecommendation({
     required String text,
     String? clientName,
+  });
+
+  ///
+  /// Get Product Recommendations
+  ///
+  Future<Result<ProductRecommendation>> getProductRecommendations({
+    required String conversation,
   });
 }

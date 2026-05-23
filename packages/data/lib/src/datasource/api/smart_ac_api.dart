@@ -3,6 +3,7 @@ import 'package:data/src/dto/audit_entry_dto.dart';
 import 'package:data/src/dto/data_list_dto.dart';
 import 'package:data/src/dto/document_dto.dart';
 import 'package:data/src/dto/orchestrator_dto.dart';
+import 'package:data/src/dto/product_dto.dart';
 import 'package:data/src/dto/reset_dto.dart';
 import 'package:data/src/dto/reviewer_assist_dto.dart';
 import 'package:data/src/dto/speech_recommendation_dto.dart';
@@ -27,6 +28,8 @@ class SmartACApi {
   static const String kAgentsAnomalyReport = 'agents/generate-anomaly-report';
   static const String kReset = 'transactions/reset';
   static const String kSpeechRecommendation = 'agents/speech-recommendation';
+  static const String kProductRecommendations =
+      'agents/product-recommendations';
 
   static String kAgentsDocument(int id) => 'agents/documents/$id';
   static String kAgentsDocumentText(int id) => 'agents/documents/$id/text';
@@ -209,5 +212,22 @@ class SmartACApi {
       data: {'text': text, if (clientName != null) 'client_name': clientName},
     );
     return SpeechRecommendationDto.fromJson(response.data);
+  }
+
+  // ── Product Recommendations ───────────────────────────────────────────────
+
+  ///
+  /// Get agentic product recommendations based on conversation
+  ///
+  Future<ProductRecommendationResponseDto> getProductRecommendations({
+    required String conversation,
+  }) async {
+    final response = await dio.post(
+      kProductRecommendations,
+      data: ProductRecommendationRequestDto(
+        conversation: conversation,
+      ).toJson(),
+    );
+    return ProductRecommendationResponseDto.fromJson(response.data);
   }
 }
