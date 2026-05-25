@@ -22,7 +22,9 @@ class DioHandler {
     final dio = Dio(
       BaseOptions(
         // baseUrl: 'http://127.0.0.1:8000/',
-        baseUrl: 'http://13.135.205.116:8000/',
+        // baseUrl: 'http://13.135.205.116:8000/', // AWS prod
+        baseUrl: 'https://saturday-defend-compete-cocktail.trycloudflare.com/',
+        // baseUrl: 'http://127.0.0.1:8000/',
         // baseUrl: 'https://marked-deadline-saturday-ensure.trycloudflare.com/',
         // baseUrl: 'https://certainly-dweeb-wife.ngrok-free.app/',
         receiveTimeout: Duration(minutes: 5),

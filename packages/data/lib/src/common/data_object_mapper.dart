@@ -7,6 +7,7 @@ import 'package:data/src/dto/document_dto.dart';
 import 'package:data/src/dto/error_dto.dart';
 import 'package:data/src/dto/junior_assist_dto.dart';
 import 'package:data/src/dto/orchestrator_dto.dart';
+import 'package:data/src/dto/product_dto.dart';
 import 'package:data/src/dto/reset_dto.dart';
 import 'package:data/src/dto/reviewer_assist_dto.dart';
 import 'package:data/src/dto/speech_recommendation_dto.dart';
@@ -14,6 +15,7 @@ import 'package:data/src/dto/transaction_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/model/data_list.dart';
+import 'package:domain/model/product_recommendation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -242,6 +244,31 @@ class DataObjectMapper {
       recommendation: dto.recommendation,
       services: dto.services,
       nextSteps: dto.nextSteps,
+    );
+  }
+
+  // ── Product Recommendation ───────────────────────────────────────────────
+
+  ProductItem toProductItem(ProductItemDto dto) {
+    return ProductItem(
+      id: dto.id,
+      title: dto.title,
+      price: dto.price,
+      category: dto.category,
+      image: dto.image,
+      reason: dto.reason,
+      rating: dto.rating,
+    );
+  }
+
+  ProductRecommendation toProductRecommendation(
+    ProductRecommendationResponseDto dto,
+  ) {
+    return ProductRecommendation(
+      source: dto.source,
+      products: dto.products.map(toProductItem).toList(),
+      conversationSummary: dto.conversationSummary,
+      durationSeconds: dto.durationSeconds,
     );
   }
 

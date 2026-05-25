@@ -1,6 +1,7 @@
 import 'package:data/src/common/data_object_mapper.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/model/data_list.dart';
+import 'package:domain/model/product_recommendation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
@@ -151,6 +152,23 @@ class SmartACApiRepositoryImpl extends SmartACApiRepository {
         clientName: clientName,
       );
       return Result.success(_objectMapper.toSpeechRecommendation(response));
+    } on Exception catch (e) {
+      _logger.e('Exception e: $e');
+      return Result.failed(_objectMapper.toError(e));
+    }
+  }
+
+  // ── Product Recommendations ──────────────────────────────────────────────
+
+  @override
+  Future<Result<ProductRecommendation>> getProductRecommendations({
+    required String conversation,
+  }) async {
+    try {
+      final response = await _api.getProductRecommendations(
+        conversation: conversation,
+      );
+      return Result.success(_objectMapper.toProductRecommendation(response));
     } on Exception catch (e) {
       _logger.e('Exception e: $e');
       return Result.failed(_objectMapper.toError(e));
